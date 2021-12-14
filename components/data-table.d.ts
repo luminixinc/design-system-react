@@ -98,6 +98,12 @@ declare module '@salesforce/design-system-react/components/data-table' {
 				scrollerRef: HTMLDivElement;
 			}
 		) => any;
+    /**
+     * This function fires when infinite loading loads more data.
+     *
+     * This will be called multiple times while the table is being scrolled within the loadMoreOffset. It'll also continue to be called while hasMore is true and the table has not yet loaded enough rows to allow a user to scroll. Please track whether or not loading is in progress and check it at the start of this function to avoid executing your callback too many times.
+     */
+    onLoadMore?: () => void;
 		/**
 		 * This function fires when the selection of rows changes. This component passes in `event, { selection }` to the function. `selection` is an array of objects from the `items` prop.
 		 *
