@@ -359,6 +359,7 @@ class DataTable extends React.Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
+    console.log('>>> componentDidUpdate called');
 		if (this.getFixedHeader()) {
 			this.resizeFixedHeaders();
 			// If the first page of results isn't enough to allow the user to scroll it causes
@@ -556,8 +557,10 @@ class DataTable extends React.Component {
 	};
 
 	loadMoreIfNeeded = () => {
+    console.log('>>> checking loadMOreIfNeeded?', this.props);
 		if (this.props.hasMore && this.props.onLoadMore) {
 			const { scrollTop, offsetHeight, scrollHeight } = this.scrollerRef;
+      console.log('>>> checking scroll stuff: ', scrollTop + offsetHeight > scrollHeight);
 			if (scrollTop + offsetHeight > scrollHeight - this.props.loadMoreOffset) {
         console.log('>>> calling onLoadMore?');
 				this.props.onLoadMore();
@@ -577,6 +580,7 @@ class DataTable extends React.Component {
 			);
 		} else {
 			const action = [`${attach ? 'add' : 'remove'}EventListener`];
+      console.log('>>> checking if we can useEventListeners: ', canUseEventListeners);
 			if (canUseEventListeners) {
 				window[action]('resize', this.resizeFixedHeaders);
 				window[action]('resize', this.loadMoreIfNeeded);
