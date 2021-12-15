@@ -569,6 +569,7 @@ class DataTable extends React.Component {
 	};
 
 	toggleFixedHeaderListeners = (attach) => {
+    console.log('>>> toggleFixedHeaderListeners: ', attach);
 		if (this.props.onToggleFixedHeaderListeners) {
 			this.props.onToggleFixedHeaderListeners(
 				{},
@@ -581,6 +582,7 @@ class DataTable extends React.Component {
 		} else {
 			const action = [`${attach ? 'add' : 'remove'}EventListener`];
       console.log('>>> checking if we can useEventListeners: ', canUseEventListeners);
+      console.log('>>> checking if we can scrollRef: ', this.scrollerRef);
 			if (canUseEventListeners) {
 				window[action]('resize', this.resizeFixedHeaders);
 				window[action]('resize', this.loadMoreIfNeeded);
