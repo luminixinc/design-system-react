@@ -418,6 +418,7 @@ class DataTable extends React.Component {
 	}
 
 	getFixedHeader() {
+    console.log('>>> getting fixed header: ', this.props.fixedHeader);
 		return this.props.fixedHeader || this.props.resizable;
 	}
 
@@ -558,6 +559,7 @@ class DataTable extends React.Component {
 		if (this.props.hasMore && this.props.onLoadMore) {
 			const { scrollTop, offsetHeight, scrollHeight } = this.scrollerRef;
 			if (scrollTop + offsetHeight > scrollHeight - this.props.loadMoreOffset) {
+        console.log('>>> calling onLoadMore?');
 				this.props.onLoadMore();
 			}
 		}
