@@ -5,9 +5,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// ### ReactHighlighter
-import ReactHighlighter from 'react-highlighter';
-
 // ## Constants
 import { HIGHLIGHTER } from '../../../utilities/constants';
 
@@ -18,34 +15,13 @@ const Highlighter = (props) => {
 	if (props.search) {
 		let children;
 		if (typeof props.children === 'string') {
-			children = (
-				<ReactHighlighter
-					className={props.className}
-					matchClass={null}
-					matchElement="mark"
-					search={props.search}
-					title={props.children}
-				>
-					{props.children}
-				</ReactHighlighter>
-			);
+			children = <React.Fragment>{props.children}</React.Fragment>;
 		} else {
 			const findString = (nodeArr) =>
 				nodeArr.map((element) => {
 					let newElement;
 					if (typeof element === 'string') {
-						newElement = (
-							<ReactHighlighter
-								key={element}
-								className={props.className}
-								matchClass={null}
-								matchElement="mark"
-								search={props.search}
-								title={element}
-							>
-								{element}
-							</ReactHighlighter>
-						);
+						newElement = <React.Fragment>{element}</React.Fragment>;
 					} else {
 						newElement = element;
 					}
